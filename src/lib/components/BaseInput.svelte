@@ -1,8 +1,17 @@
 <script lang="ts">
+	import { onMount } from "svelte"
+
 	//props
 	export let value: String = '', label: string, placeholder: string = 'placeholder', type:string;
 
-	let showPwd: boolean = false;
+  onMount(() => 
+	{
+		if(label === 'Password') {
+			tooglePwd()
+		}
+	})
+
+	let showPwd: boolean = true;
 
 	$: type = showPwd ? 'text' : 'password'
 	
@@ -32,7 +41,7 @@
 		
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		{#if label === 'Password'}
-		<div on:click={tooglePwd} class=" text-black p-2 bg-white h-full border-transparent flex items-center justify-center">
+		<div on:click={tooglePwd} class="cursor-pointer text-black p-2 bg-white h-full border-transparent flex items-center justify-center">
 			{#if showPwd}
 				<svg
 					xmlns="http://www.w3.org/2000/svg"

@@ -30,7 +30,7 @@
 			<BaseInput
 				label="Email"
 				placeholder="bestEmail@email.com"
-				type="text"
+				type="email"
 				bind:value={user.email}
 			/>
 			<BaseInput label="Password" placeholder="Secret" type="password" bind:value={user.password} />
