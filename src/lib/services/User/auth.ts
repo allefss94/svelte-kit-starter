@@ -12,9 +12,11 @@ export function SignUp ({ email, password }: User) {
 		.then(userCredential => {
 			const { user } = userCredential
 			currentUser.update(current => (current = user))
+			toast.push(`User created successfully`)
 		})
 		.catch(error => {
 			errors.update(erro => (erro = error))
+			toast.push(`An error occurred while creating the user - ${error.message}`)
 		})
 }
 
@@ -24,12 +26,13 @@ export function SignInWithCredentials ({ email, password }: User) {
 			const { user } = userCredential
 			currentUser.update(current => (current = user))
 			toast.push(`User ${user.email} is LoogedIn`)
-			goto('/')
+
+			goto('/user')
 		})
 		.catch(error => {
 			errors.update(erro => (erro = error))
 			toast.push(
-				`SignIn error, please check your credentials or make new account <a class="text-indigo-500" href="/register">clicking here</a>`,
+				`SignIn error ${error.message}, please check your credentials or make new account <a class="text-indigo-500" href="/register">clicking here</a>`,
 				{ pausable: true }
 			)
 		})
