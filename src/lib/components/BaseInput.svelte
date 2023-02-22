@@ -1,17 +1,8 @@
 <script lang="ts">
-	import { onMount } from "svelte"
-
 	//props
 	export let value: String = '', label: string, placeholder: string = 'placeholder', type:string;
 
-  onMount(() => 
-	{
-		if(label === 'Password') {
-			tooglePwd()
-		}
-	})
-
-	let showPwd: boolean = true;
+	let showPwd: boolean = false;
 
 	$: type = showPwd ? 'text' : 'password'
 	
@@ -29,14 +20,14 @@
 <div class="flex flex-col my-2">
 	<label for={label} class="text-left text-white">{label}</label>
 
-	<div class="flex items-center bg-white rounded p-1 focus-within:ring-3 focus-within:ring-indigo-400 transition-all duration-400">
+	<div class="flex items-center bg-white rounded p-1 focus-within:ring-3 focus-within:ring-indigo-500 transition-all duration-400">
 		<input
 			{type}
 			autocomplete="off"
 			use:setPropsToNodeElement
 			on:input={handleInput}
 			{placeholder}
-			class="{label === 'Password' ? 'rounded-bl-[5px] rounded-tl-[5px]' : 'rounded'} w-full p-3  outline-transparent focus:outline-none"
+			class=" w-full p-3  outline-transparent focus:outline-none"
 		/>
 		
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
