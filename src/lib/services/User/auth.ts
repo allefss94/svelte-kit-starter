@@ -13,6 +13,7 @@ export function SignUp ({ email, password }: User) {
 			const { user } = userCredential
 			currentUser.update(current => (current = user))
 			toast.push(`User created successfully`)
+			goto('/user')
 		})
 		.catch(error => {
 			errors.update(erro => (erro = error))
